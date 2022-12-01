@@ -11,7 +11,8 @@ export const CustomerHeadApi = async(req,res, next)=>{
             date,
             professionalFees,
             email,
-            representativeName
+            representativeName,
+            remarks
           })
           res.status(200).json({ status: true , msg: "CustomerHead Created successfully" })
 
