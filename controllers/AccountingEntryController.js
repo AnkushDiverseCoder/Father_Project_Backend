@@ -10,6 +10,7 @@ export const AccountingEntryApi = async (req, res, next) => {
       epfAmount,
       esicAmount,
       otherDebit,
+      professionalFees,
       remarks,
     } = req.body;
 
@@ -25,7 +26,7 @@ export const AccountingEntryApi = async (req, res, next) => {
       remarks,
       email: customerHeadData.email ? customerHeadData.email : "",
       contactNumber: customerHeadData.contactNumber,
-      professionalFees: customerHeadData.professionalFees,
+      professionalFees,
       representativeName: customerHeadData.representativeName,
     });
   
