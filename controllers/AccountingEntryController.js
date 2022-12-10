@@ -15,7 +15,7 @@ export const AccountingEntryApi = async (req, res, next) => {
     } = req.body;
 
     const customerHeadData = await CustomerHead.findOne({ customerName });
-
+    
     await AccountingEntry.create({
       customerName,
       monthComplianceDate,
@@ -29,15 +29,21 @@ export const AccountingEntryApi = async (req, res, next) => {
       professionalFees,
       representativeName: customerHeadData.representativeName,
     });
-  
-    res
-      .status(200)
-      .json({
-        status: true,
-        msg: "AccountingEntry Created successfully,Email Send Successfully",
-        email: customerHeadData.email
-      });
+
+    res.status(200).json({
+      status: true,
+      msg: "AccountingEntry Created successfully,Email Send Successfully",
+    });
   } catch (error) {
     res.json({ status: false, msg: error.message });
   }
 };
+
+// get all customerName
+export const getEmail = async (req, res, next) => {
+  const customerHeadData = await CustomerHead.findOne({ customerName:req.body.customerName });
+  res.status(200).json({
+    email: customerHeadData.email,
+  });
+};
+
