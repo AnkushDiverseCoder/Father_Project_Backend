@@ -1,5 +1,6 @@
 import { AccountingEntry } from "../models/AccountingEntryModel.js";
 import { CustomerHead } from "../models/CustomerHeadModel.js";
+import Emailjs from "emailjs-com";
 
 export const AccountingEntryApi = async (req, res, next) => {
   try {
@@ -12,6 +13,7 @@ export const AccountingEntryApi = async (req, res, next) => {
       otherDebit,
       professionalFees,
       remarks,
+      sendEmail
     } = req.body;
 
     const customerHeadData = await CustomerHead.findOne({ customerName });
@@ -30,20 +32,29 @@ export const AccountingEntryApi = async (req, res, next) => {
       representativeName: customerHeadData.representativeName,
     });
 
-    res.status(200).json({
-      status: true,
-      msg: "AccountingEntry Created successfully,Email Send Successfully",
-    });
+    if(sendEmail){
+      Emailjs.sendForm('service_pfi3nzc','template_jxrteyn',{
+        monthComplianceAmount:monthComplianceAmount,
+        totalDebit:epfAmount+esicAmount+otherDebit+professionalFees,
+        closingBalance:monthComplianceAmount-(epfAmount+esicAmount+otherDebit+professionalFees),
+        emailBackend:"thakurtulja0@gmail.com"
+      },'mRXi-zN_LJvQpgcDw').then((res)=>{
+        res.status(200).json({
+          status: true,
+          msg: "Email Send successfully",
+          response:res
+        })
+      })
+    }else{
+      res.status(200).json({
+        status: true,
+        msg: "AccountingEntry Created successfully",
+      });
+    }
+
   } catch (error) {
     res.json({ status: false, msg: error.message });
   }
 };
 
-// get all customerName
-export const getEmail = async (req, res, next) => {
-  const customerHeadData = await CustomerHead.findOne({ customerName:req.body.customerName });
-  res.status(200).json({
-    email: customerHeadData.email,
-  });
-};
 
