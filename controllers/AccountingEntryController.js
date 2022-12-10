@@ -25,7 +25,7 @@ export const AccountingEntryApi = async (req, res, next) => {
       esicAmount,
       otherDebit,
       remarks,
-      // email: customerHeadData.email ? customerHeadData.email : "",
+      email: customerHeadData.email ? customerHeadData.email : "",
       contactNumber: customerHeadData.contactNumber,
       professionalFees,
       representativeName: customerHeadData.representativeName,
@@ -51,7 +51,7 @@ export const AccountingEntryApi = async (req, res, next) => {
 export const getEmail = async (req, res, next) => {
   const customerHeadData = await CustomerHead.findOne({ customerName:req.body.customerName });
   res.status(200).json({
-    email: customerHeadData.email?customerHeadData.email : "",
+    email: customerHeadData?.email ? customerHeadData.email : "",
   });
 };
 
