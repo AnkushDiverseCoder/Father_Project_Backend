@@ -17,6 +17,8 @@ export const AccountingEntryApi = async (req, res, next) => {
 
     const customerHeadData = await CustomerHead.findOne({ customerName });
     
+    
+    const duplicateFind = await CustomerHead.findOne({ customerName,monthComplianceDate,monthComplianceAmount,epfAmount,esicAmount });
     await AccountingEntry.create({
       customerName,
       monthComplianceDate,
