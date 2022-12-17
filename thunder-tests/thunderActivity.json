@@ -61,16 +61,16 @@
     "colId": "history",
     "containerId": "",
     "name": "localhost:8000/api/customerhead",
-    "url": "localhost:8000/api/customerhead",
+    "url": "localhost:8000/api/auth/register",
     "method": "POST",
     "sortNum": 0,
     "created": "2022-12-01T14:40:09.270Z",
-    "modified": "2022-12-01T14:40:09.270Z",
+    "modified": "2022-12-17T16:02:20.665Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"ontactNumber\": \"161651651\",\n\"customerName\": \"asfgasfasfasfasf\",\n\"date\": \n\"2000-02-01\",\n\"email\": \n\"665165165\",\n\"epfNumber\": \n\"56161\",\n\"esicNumber\": \n\"1561561651\",\n\"professionalFees\": \n\"5616165\",\n\"remarks\": \n\"1656165165\",\n\"representativeName\": \n\"asfasfas\"\n}",
+      "raw": "{\n  \"email\":\"manju.manjunath769@gmail.com\",\n  \"username\":\"manjunathb\",\n  \"password\":\"Manju@1821\"\n}",
       "form": []
     },
     "tests": []
