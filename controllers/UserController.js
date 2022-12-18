@@ -60,6 +60,7 @@ export const login = async (req, res, next) => {
         httpOnly: true,
         sameSite: "none",
         secure: true,
+        domain: '.netlify.app'
       })
       .json({ msg: "login successfully", status: true });
   } catch (error) {
