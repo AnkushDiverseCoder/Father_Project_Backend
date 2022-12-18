@@ -13,7 +13,7 @@ const app = express();
 
 // middleware
 app.use(express.json());
-app.use(cors({ credentials: true, origin: "https://vcaccounts.netlify.app" }));
+app.use(cors());
 app.use(cookieParser());
 dotenv.config();
 

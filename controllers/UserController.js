@@ -56,13 +56,7 @@ export const login = async (req, res, next) => {
 
     res
       .status(200)
-      .cookie("token", token, {
-        httpOnly: true,
-        sameSite: "none",
-        secure: true,
-        domain: '.netlify.app'
-      })
-      .json({ msg: "login successfully", status: true });
+      .json({ msg: "login successfully",token:token, status: true });
   } catch (error) {
     return res.json({ msg: error.message, status: false });
   }
@@ -70,7 +64,7 @@ export const login = async (req, res, next) => {
 
 export const verifyToken = async (req, res, next) => {
   try {
-    const token = req.cookies.token;
+    const {token} = req.body;
     const { email, username } = jwt.verify(token, "papa");
 
     return res.json({ email, username, msg: "true", status: "true" });
