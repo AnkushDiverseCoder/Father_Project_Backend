@@ -10,6 +10,6 @@ router.post("/login", login)
 router.post("/register", register)
 
 //  Verify Token
-router.post("/verifyToken", verifyToken)
+router.get("/verifyToken", verifyToken)
 
 export default router

@@ -49,23 +49,24 @@ export const login = async (req, res, next) => {
         user: user._id,
         email:user.email,
       },
-      "papa",
-      { expiresIn: "10h" }
+      'papa',
+      { expiresIn: "4h" }
     );
 
-    return res.json({ status: true, token });
-  } catch (error) {
+    res.status(200).cookie("token",token).json({msg : "login successfully" , status: true})
+  }
+     catch (error) {
     return res.json({ msg: error.message, status: false });
   }
 };
+
 export const verifyToken = async (req, res, next) => {
   try {
-    const { token } = req.body;
+    const token = req.cookies.token;
+    const { email } = jwt.verify(token, 'papa');
 
-    const decode = jwt.verify(token, 'papa');
-
-    return res.json({ status: true, decode });
+    return res.json({ email , msg:"true" ,status :"true" });
   } catch (error) {
-    return res.json({ msg: error.message, status: false });
+    return res.json({ msg: error.message, status: "false" });
   }
 };
