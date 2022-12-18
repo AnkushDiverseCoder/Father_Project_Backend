@@ -47,6 +47,7 @@ export const login = async (req, res, next) => {
     const token = jwt.sign(
       {
         user: user._id,
+        username: user.username,
         email:user.email,
       },
       'papa',
@@ -63,9 +64,9 @@ export const login = async (req, res, next) => {
 export const verifyToken = async (req, res, next) => {
   try {
     const token = req.cookies.token;
-    const { email } = jwt.verify(token, 'papa');
+    const { email , username } = jwt.verify(token, 'papa');
 
-    return res.json({ email , msg:"true" ,status :"true" });
+    return res.json({ email,username , msg:"true" ,status :"true" });
   } catch (error) {
     return res.json({ msg: error.message, status: "false" });
   }
