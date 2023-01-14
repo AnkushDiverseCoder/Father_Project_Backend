@@ -20,7 +20,7 @@ const AccountingEntrySchema = new mongoose.Schema({
     type: Date,
   },
   monthComplianceAmount: {
-    type: String,
+    type: Number,
   },
   epfAmount: {
     type: Number,
