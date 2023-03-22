@@ -14,6 +14,7 @@ export const createEmployeeEnrollment = async (req, res, next) => {
     } = req.body;
 
     const duplicateFind = await EmployeeEnrollment.findOne({
+      customerName,
       EmployeeName,
       Uan,
       esicIpNumber,
